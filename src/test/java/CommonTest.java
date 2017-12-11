@@ -36,8 +36,8 @@ public class CommonTest {
         //遍历每一个张表
         for (int i = 0; i < result.size(); i++) {
             String code=result.get(i);
+            System.out.println(code+" start");
             List<HashMap> rs=service.wangzhao(code);
-
             String content="";
             content+="date_time";
             content+=" ";
@@ -56,6 +56,7 @@ public class CommonTest {
             content+="position";
             content+="\r\n";
             for(int j=0;j<rs.size();j++){
+                System.out.println(j);
                 HashMap map=rs.get(i);
                 content+=map.get("date_time");
                 content+=" ";
@@ -79,6 +80,8 @@ public class CommonTest {
             fwriter.write(content);
             fwriter.flush();
             fwriter.close();
+            System.out.println(code+" end");
         }
+
     }
 }
