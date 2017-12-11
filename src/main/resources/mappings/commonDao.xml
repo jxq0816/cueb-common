@@ -11,10 +11,9 @@
 	</select>
 
 	<!--查询表内容 -->
-	<select id="queryAll" resultType="java.util.Map" parameterType="String">
+	<select id="queryAll" resultType="java.util.Map" parameterType="java.util.Map" statementType="STATEMENT">
 		SELECT date_time
-		FROM of000001
-		limit 1,1
+		FROM ${tableName}
 	</select>
 
 	<!--查询表内容 -->

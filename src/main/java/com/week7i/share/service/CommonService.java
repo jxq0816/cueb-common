@@ -14,7 +14,9 @@ import java.util.Set;
 @Service
 public class CommonService {
     private CommonDao commonDao = SpringContextHolder.getBean(CommonDao.class);
-
+    /**
+     * 查询行数为0的空表
+     */
     public Set zeroRowTables(){
         Set rs=new HashSet();
         HashMap param=new HashMap();
@@ -31,7 +33,7 @@ public class CommonService {
     public List<HashMap> queryAll(String tableName){
         HashMap map=new HashMap();
         map.put("tableName",tableName);
-        List<HashMap> rs=commonDao.queryAll(tableName);
+        List<HashMap> rs=commonDao.queryAll(map);
         return rs;
 
     }
@@ -41,6 +43,5 @@ public class CommonService {
         map.put("tableName",tableName);
         List<HashMap> rs=commonDao.wangzhao(map);
         return rs;
-
     }
 }

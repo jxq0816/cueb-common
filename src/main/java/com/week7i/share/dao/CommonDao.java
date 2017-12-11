@@ -10,6 +10,6 @@ import java.util.Set;
  */
 public interface CommonDao {
     List<HashMap> queryZeroRowTable();
-    List<HashMap> queryAll(String tableName);
+    List<HashMap> queryAll(HashMap map);
     List<HashMap> wangzhao(HashMap map);
 }
