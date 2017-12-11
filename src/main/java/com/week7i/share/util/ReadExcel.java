@@ -17,9 +17,9 @@ public class ReadExcel {
         InputStream inputStream = new FileInputStream(path);
         XSSFWorkbook xssfWorkbook = new XSSFWorkbook(inputStream);
         List<String> result = new ArrayList<>();
-        XSSFSheet xssfSheet = xssfWorkbook.getSheetAt(1);
+        XSSFSheet xssfSheet = xssfWorkbook.getSheetAt(0);
         //处理当前页，循环读取每一行
-        for (int rowNum = 1; rowNum <= xssfSheet.getLastRowNum(); rowNum++) {
+        for (int rowNum = 0; rowNum <= xssfSheet.getLastRowNum(); rowNum++) {
             XSSFRow xssfRow = xssfSheet.getRow(rowNum);
             int maxColIndex = xssfRow.getLastCellNum();
             XSSFCell codeCell = xssfRow.getCell(0);

@@ -30,19 +30,31 @@ public class CommonTest {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[]{"applicationContext.xml", "dispatcherServlet.xml", "spring-context-shiro.xml"});
         SpringContextHolder holder = context.getBean(SpringContextHolder.class);
         CommonService service = holder.getBean(CommonService.class);
-        String path = "doc/1.xlsx";
+        String path = "doc/qihuo1.xlsx";
         List<String> result = ReadExcel.read(path);
         FileWriter fwriter = null;
         //遍历每一个张表
         for (int i = 0; i < result.size(); i++) {
             String code=result.get(i);
-            List<HashMap> rs=service.queryAll(code);
+            List<HashMap> rs=service.wangzhao(code);
             String content="";
             for(int j=0;j<rs.size();j++){
                 HashMap map=rs.get(i);
-                content+=map.get("p_date");
+                content+=map.get("date_time");
                 content+=" ";
-                content+=map.get("net");
+                content+=map.get("open");
+                content+=" ";
+                content+=map.get("high");
+                content+=" ";
+                content+=map.get("low");
+                content+=" ";
+                content+=map.get("close");
+                content+=" ";
+                content+=map.get("volume");
+                content+=" ";
+                content+=map.get("amount");
+                content+=" ";
+                content+=map.get("position");
                 content+="\r\n";
             }
             String file = "doc/"+code+".txt";

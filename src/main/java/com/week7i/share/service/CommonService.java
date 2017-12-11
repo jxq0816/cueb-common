@@ -35,4 +35,12 @@ public class CommonService {
         return rs;
 
     }
+
+    public List<HashMap> wangzhao(String tableName){
+        HashMap map=new HashMap();
+        map.put("tableName",tableName);
+        List<HashMap> rs=commonDao.wangzhao(tableName);
+        return rs;
+
+    }
 }
