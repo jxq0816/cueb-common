@@ -39,7 +39,7 @@ public class CommonService {
     public List<HashMap> wangzhao(String tableName){
         HashMap map=new HashMap();
         map.put("tableName",tableName);
-        List<HashMap> rs=commonDao.wangzhao(tableName);
+        List<HashMap> rs=commonDao.wangzhao(map);
         return rs;
 
     }

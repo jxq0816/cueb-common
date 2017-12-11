@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.week7i.share.dao.CommonDao">
+
+	<!--查询行数为0的表 -->
+	<select id="queryZeroRowTable" resultType="java.util.Map" parameterType="java.util.Map">
+		SELECT table_name
+		FROM INFORMATION_SCHEMA.TABLES
+		INNER join fund_code ON fund_code.tbName=table_name
+		where table_rows=0;
+	</select>
+
+	<!--查询表内容 -->
+	<select id="queryAll" resultType="java.util.Map" parameterType="String">
+		SELECT date_time
+		FROM of000001
+		limit 1,1
+	</select>
+
+	<!--查询表内容 -->
+	<select id="wangzhao" resultType="java.util.Map" parameterType="java.util.Map" statementType="STATEMENT">
+		SELECT date_time,open,high,low,close,volume,amount,position
+		FROM ${tableName}
+	</select>
+
+</mapper>

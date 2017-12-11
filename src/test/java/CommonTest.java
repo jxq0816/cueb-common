@@ -37,7 +37,24 @@ public class CommonTest {
         for (int i = 0; i < result.size(); i++) {
             String code=result.get(i);
             List<HashMap> rs=service.wangzhao(code);
+
             String content="";
+            content+="date_time";
+            content+=" ";
+            content+="open";
+            content+=" ";
+            content+="high";
+            content+=" ";
+            content+="low";
+            content+=" ";
+            content+="close";
+            content+=" ";
+            content+="volume";
+            content+=" ";
+            content+="amount";
+            content+=" ";
+            content+="position";
+            content+="\r\n";
             for(int j=0;j<rs.size();j++){
                 HashMap map=rs.get(i);
                 content+=map.get("date_time");
@@ -62,7 +79,6 @@ public class CommonTest {
             fwriter.write(content);
             fwriter.flush();
             fwriter.close();
-            break;
         }
     }
 }
