@@ -27,7 +27,7 @@ public class CommonTest {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[]{"applicationContext.xml", "dispatcherServlet.xml", "spring-context-shiro.xml"});
         SpringContextHolder holder = context.getBean(SpringContextHolder.class);
         CommonService service = holder.getBean(CommonService.class);
-        String path = "doc/ETF.xlsx";
+        String path = "doc/ETF01.xlsx";
         List<Map> result = ReadExcel.read(path);
         FileWriter fileWriter = null;
         int rowNum=result.size();
@@ -60,6 +60,7 @@ public class CommonTest {
                 content+=" ";
                 content+="position";
                 content+="\r\n";
+                String pre_close="0";
                 for(int j=0;j<rs.size();j++){
                     System.out.println(j);
                     HashMap map=rs.get(i);
@@ -75,8 +76,14 @@ public class CommonTest {
                     content+=" ";
                     content+=map.get("low");
                     content+=" ";
-                    content+=map.get("close");
+
+                    String close=(String) map.get("close");
+                    content+=close;
                     content+=" ";
+                    content+=pre_close;//前收盘
+
+                    pre_close=close;
+
                     content+=map.get("volume");
                     content+=" ";
                     content+=map.get("amount");

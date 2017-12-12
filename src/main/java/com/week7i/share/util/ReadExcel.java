@@ -30,7 +30,7 @@ public class ReadExcel {
             //遍历该行，获取处理每个cell元素
             map.put("code",code);
             XSSFCell nameCell = xssfRow.getCell(1);
-            String name = codeCell.toString();
+            String name = nameCell.toString();
             //遍历该行，获取处理每个cell元素
             map.put("code",code);
             map.put("name",name);
