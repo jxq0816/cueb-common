@@ -9,10 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class CommonTest {
 
@@ -30,17 +27,23 @@ public class CommonTest {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[]{"applicationContext.xml", "dispatcherServlet.xml", "spring-context-shiro.xml"});
         SpringContextHolder holder = context.getBean(SpringContextHolder.class);
         CommonService service = holder.getBean(CommonService.class);
-        String path = "doc/qihuo1.xlsx";
-        List<String> result = ReadExcel.read(path);
+        String path = "doc/ETF.xlsx";
+        List<Map> result = ReadExcel.read(path);
         FileWriter fileWriter = null;
         int rowNum=result.size();
         if(rowNum!=0){
             //遍历每一个张表
             for (int i = 0; i < rowNum; i++) {
-                String code=result.get(i);
+                Map m=result.get(i);
+                String code=(String) m.get("code");
+                String name=(String) m.get("name");
                 System.out.println(code+" start");
-                List<HashMap> rs=service.wangzhao(code);
+                List<HashMap> rs=service.etf(code);
                 String content="";
+                content+="code";
+                content+=" ";
+                content+="name";
+                content+=" ";
                 content+="date_time";
                 content+=" ";
                 content+="open";
@@ -60,6 +63,10 @@ public class CommonTest {
                 for(int j=0;j<rs.size();j++){
                     System.out.println(j);
                     HashMap map=rs.get(i);
+                    content+=code;
+                    content+=" ";
+                    content+=name;
+                    content+=" ";
                     content+=map.get("date_time");
                     content+=" ";
                     content+=map.get("open");

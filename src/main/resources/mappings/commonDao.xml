@@ -21,5 +21,10 @@
 		SELECT date_time,open,high,low,close,volume,amount,position
 		FROM ${tableName}
 	</select>
+	<select id="etf" resultType="java.util.Map" parameterType="java.util.Map" statementType="STATEMENT">
+		SELECT date_time,open,high,low,close,volume,amount,position
+		FROM ${tableName}
+	</select>
+
 
 </mapper>

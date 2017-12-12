@@ -44,4 +44,10 @@ public class CommonService {
         List<HashMap> rs=commonDao.wangzhao(map);
         return rs;
     }
+    public List<HashMap> etf(String tableName){
+        HashMap map=new HashMap();
+        map.put("tableName",tableName);
+        List<HashMap> rs=commonDao.etf(map);
+        return rs;
+    }
 }
