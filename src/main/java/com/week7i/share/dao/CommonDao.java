@@ -13,4 +13,5 @@ public interface CommonDao {
     List<HashMap> queryAll(HashMap map);
     List<HashMap> wangzhao(HashMap map);
     List<HashMap> etf(HashMap map);
+    List<HashMap> csi(HashMap map);
 }

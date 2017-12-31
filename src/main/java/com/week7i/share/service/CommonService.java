@@ -50,4 +50,10 @@ public class CommonService {
         List<HashMap> rs=commonDao.etf(map);
         return rs;
     }
+    public List<HashMap> csi(String tableName){
+        HashMap map=new HashMap();
+        map.put("tableName","sh"+tableName);
+        List<HashMap> rs=commonDao.csi(map);
+        return rs;
+    }
 }

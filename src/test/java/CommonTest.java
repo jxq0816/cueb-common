@@ -27,7 +27,7 @@ public class CommonTest {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[]{"applicationContext.xml", "dispatcherServlet.xml", "spring-context-shiro.xml"});
         SpringContextHolder holder = context.getBean(SpringContextHolder.class);
         CommonService service = holder.getBean(CommonService.class);
-        String path = "doc/qihuo1.xlsx";
+        String path = "doc/CSI1k.xlsx";
         List<Map> result = ReadExcel.read(path);
         FileWriter fileWriter = null;
         int rowNum=result.size();
@@ -36,16 +36,14 @@ public class CommonTest {
             for (int i = 0; i < rowNum; i++) {
                 Map m=result.get(i);
                 String code=(String) m.get("code");
-                String name=(String) m.get("name");
                 System.out.println(code+" start");
-                List<HashMap> rs=service.wangzhao(code);
+                List<HashMap> rs=service.csi(code);
                 if(rs.size()!=0){
                     String content="";
                     content+="code";
+
                     content+=" ";
-                    content+="name";
-                    content+=" ";
-                    content+="date_time";
+                    content+="p_date";
                     content+=" ";
                     content+="open";
                     content+=" ";
@@ -55,21 +53,19 @@ public class CommonTest {
                     content+=" ";
                     content+="close";
                     content+=" ";
+                    content+="pre_close";
+                    content+=" ";
                     content+="volume";
                     content+=" ";
                     content+="amount";
-                    content+=" ";
-                    content+="position";
                     content+="\r\n";
-                    Double pre_close=0.0;
+                    float pre_close=0;
                     for(int j=0;j<rs.size();j++){
                         System.out.println(j);
                         HashMap map=rs.get(i);
                         content+=code;
                         content+=" ";
-                        content+=name;
-                        content+=" ";
-                        content+=map.get("date_time");
+                        content+=map.get("p_date");
                         content+=" ";
                         content+=map.get("open");
                         content+=" ";
@@ -78,18 +74,16 @@ public class CommonTest {
                         content+=map.get("low");
                         content+=" ";
 
-                        Double close=(Double) map.get("close");
+                        Float close=(Float) map.get("close");
                         content+=close;
                         content+=" ";
                         content+=pre_close;//前收盘
-
+                        content+=" ";
                         pre_close=close;
 
                         content+=map.get("volume");
                         content+=" ";
                         content+=map.get("amount");
-                        content+=" ";
-                        content+=map.get("position");
                         content+="\r\n";
                     }
                     String file = "doc/"+code+".txt";
@@ -99,7 +93,8 @@ public class CommonTest {
                     fileWriter.close();
                     System.out.println(code+" end");
                 }
-            }
-        }
-    }
+                break;
+            }//end of for
+        }//end of if
+    }//end of root
 }

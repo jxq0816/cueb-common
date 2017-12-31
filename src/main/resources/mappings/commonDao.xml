@@ -27,5 +27,9 @@
 		FROM ${tableName}
 	</select>
 
+	<select id="csi" resultType="java.util.Map" parameterType="java.util.Map" statementType="STATEMENT">
+		SELECT p_date,open,high,low,close,volume,amount
+		FROM ${tableName}
+	</select>
 
 </mapper>
